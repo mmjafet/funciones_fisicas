@@ -6,6 +6,7 @@ import matplotlib.animation as animation
 A = 5       # Amplitud
 omega = 2   # Frecuencia angular
 phi = 0     # Fase inicial
+num_coils = 15  # Número de espiras del resorte
 t = np.linspace(0, 10, 100)  # Tiempo
 
 # Crear la figura
@@ -15,17 +16,22 @@ ax.set_ylim(-A - 1, A + 1)
 ax.set_xticks([])
 ax.set_yticks([])
 
-# Dibujar el resorte y la masa
-line, = ax.plot([], [], 'b', lw=2)  # Línea del resorte
+# Dibujar la masa
 mass, = ax.plot([], [], 'ro', markersize=10)  # Masa del péndulo
 
-# Dibujar un resorte estilizado
-def draw_spring(x):
-    y = np.linspace(-A, x, 10)
-    x_spring = np.sin(np.linspace(0, 4 * np.pi, len(y))) * 0.5
+# Función para dibujar un resorte realista
+def draw_spring(y_start, y_end, num_coils=15):
+    """Dibuja un resorte entre y_start y y_end con una cantidad específica de espiras."""
+    num_points = 100
+    y = np.linspace(y_start, y_end, num_points)
+    
+    # Estructura del resorte con espiras
+    x_spring = 0.3 * np.sin(np.linspace(0, num_coils * 2 * np.pi, num_points))
+    
     return x_spring, y
 
-spring_x, spring_y = draw_spring(A)
+# Línea inicial del resorte
+spring_x, spring_y = draw_spring(-A, A, num_coils)
 spring_line, = ax.plot(spring_x, spring_y, 'k', lw=2)
 
 # Mostrar ecuación y valores dinámicos
@@ -35,15 +41,16 @@ val_text = ax.text(-A, A - 1, "", fontsize=12, color='red')
 # Función de actualización de la animación
 def update(frame):
     x_pos = A * np.cos(omega * t[frame] + phi)  # Posición de la masa
-    mass.set_data([0], [x_pos])  # Corregido: Ahora es una lista con un solo valor
-    line.set_data([0, 0], [-A, x_pos])  # Línea del resorte
-    spring_x, spring_y = draw_spring(x_pos)  # Dibujar el resorte estirado
+    mass.set_data([0], [x_pos])  # Posición de la masa
+
+    # Dibujar resorte con nueva posición
+    spring_x, spring_y = draw_spring(-A, x_pos, num_coils)
     spring_line.set_data(spring_x, spring_y)
 
     # Actualizar el texto de valores
     val_text.set_text(f"x(t) = {x_pos:.2f} m")
     
-    return mass, line, spring_line, val_text
+    return mass, spring_line, val_text
 
 # Crear animación
 ani = animation.FuncAnimation(fig, update, frames=len(t), interval=50, blit=True)
