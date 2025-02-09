@@ -28,6 +28,10 @@ def draw_spring(x):
 spring_x, spring_y = draw_spring(A)
 spring_line, = ax.plot(spring_x, spring_y, 'k', lw=2)
 
+# Mostrar ecuación y valores dinámicos
+eq_text = ax.text(-A, A, r"$x(t) = A \cos(\omega t + \phi)$", fontsize=12, color='black')
+val_text = ax.text(-A, A - 1, "", fontsize=12, color='red')
+
 # Función de actualización de la animación
 def update(frame):
     x_pos = A * np.cos(omega * t[frame] + phi)  # Posición de la masa
@@ -35,7 +39,11 @@ def update(frame):
     line.set_data([0, 0], [-A, x_pos])  # Línea del resorte
     spring_x, spring_y = draw_spring(x_pos)  # Dibujar el resorte estirado
     spring_line.set_data(spring_x, spring_y)
-    return mass, line, spring_line
+
+    # Actualizar el texto de valores
+    val_text.set_text(f"x(t) = {x_pos:.2f} m")
+    
+    return mass, line, spring_line, val_text
 
 # Crear animación
 ani = animation.FuncAnimation(fig, update, frames=len(t), interval=50, blit=True)
