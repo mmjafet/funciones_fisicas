@@ -2,7 +2,7 @@ import numpy as np
 import matplotlib.pyplot as plt
 import matplotlib.animation as animation
 
-# Parámetros
+# Parámetros del MAS
 A = 5       # Amplitud
 omega = 2   # Frecuencia angular
 phi = 0     # Fase inicial
@@ -16,7 +16,7 @@ ax.set_xticks([])
 ax.set_yticks([])
 
 # Dibujar el resorte y la masa
-line, = ax.plot([], [], 'b', lw=2)  # Línea que representa la trayectoria
+line, = ax.plot([], [], 'b', lw=2)  # Línea del resorte
 mass, = ax.plot([], [], 'ro', markersize=10)  # Masa del péndulo
 
 # Dibujar un resorte estilizado
@@ -31,7 +31,7 @@ spring_line, = ax.plot(spring_x, spring_y, 'k', lw=2)
 # Función de actualización de la animación
 def update(frame):
     x_pos = A * np.cos(omega * t[frame] + phi)  # Posición de la masa
-    mass.set_data(0, x_pos)  # Actualizar la posición de la masa
+    mass.set_data([0], [x_pos])  # Corregido: Ahora es una lista con un solo valor
     line.set_data([0, 0], [-A, x_pos])  # Línea del resorte
     spring_x, spring_y = draw_spring(x_pos)  # Dibujar el resorte estirado
     spring_line.set_data(spring_x, spring_y)
@@ -39,4 +39,5 @@ def update(frame):
 
 # Crear animación
 ani = animation.FuncAnimation(fig, update, frames=len(t), interval=50, blit=True)
+
 plt.show()
