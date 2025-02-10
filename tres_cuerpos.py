@@ -1,4 +1,9 @@
+import numpy as np
+import matplotlib.pyplot as plt
+from matplotlib.animation import FuncAnimation
+from scipy.integrate import solve_ivp
 
+# Constante gravitacional universal
 G = 1  # Para simplificar, usamos G = 1 en unidades arbitrarias
 
 # Definir las masas y condiciones iniciales (posición y velocidad)
