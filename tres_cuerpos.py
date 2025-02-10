@@ -68,3 +68,5 @@ def update(frame):
     trail3.set_data(x3[:frame], y3[:frame])
     return line1, line2, line3, trail1, trail2, trail3
 
+ani = FuncAnimation(fig, update, frames=len(t_eval), interval=20, blit=True)
+plt.show()
