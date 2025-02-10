@@ -60,9 +60,9 @@ trail3, = ax.plot([], [], 'b-', alpha=0.5)
 ax.legend()
 
 def update(frame):
-    line1.set_data(x1[frame], y1[frame])
-    line2.set_data(x2[frame], y2[frame])
-    line3.set_data(x3[frame], y3[frame])
+    line1.set_data([x1[frame]], [y1[frame]])
+    line2.set_data([x2[frame]], [y2[frame]])
+    line3.set_data([x3[frame]], [y3[frame]])
     trail1.set_data(x1[:frame], y1[:frame])
     trail2.set_data(x2[:frame], y2[:frame])
     trail3.set_data(x3[:frame], y3[:frame])
