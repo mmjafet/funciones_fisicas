@@ -26,3 +26,15 @@ model.compile(optimizer='adam',
 print("Entrenando la red neuronal...")
 history = model.fit(x_train, y_train, epochs=5, validation_data=(x_test, y_test))
 
+# Evaluar el modelo
+print("Evaluando el modelo...")
+test_loss, test_acc = model.evaluate(x_test, y_test, verbose=2)
+print(f"\nPrecisión en el conjunto de prueba: {test_acc:.4f}")
+
+# Graficar la precisión y la pérdida durante el entrenamiento
+plt.plot(history.history['accuracy'], label='Precisión en entrenamiento')
+plt.plot(history.history['val_accuracy'], label='Precisión en validación')
+plt.xlabel('Época')
+plt.ylabel('Precisión')
+plt.legend()
+plt.show()
