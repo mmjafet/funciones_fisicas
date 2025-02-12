@@ -8,14 +8,15 @@ g = 9.81  # Aceleración debida a la gravedad (m/s^2)
 v_avion = 100  # Velocidad del avión (m/s)
 h = 1000  # Altura del avión (m)
 d = 2000  # Distancia horizontal al objetivo (m)
+k = 0.1  # Coeficiente de resistencia del aire
 
-# Calcular el tiempo de caída
+# Calcular el tiempo de caída sin resistencia del aire
 t_caida = np.sqrt(2 * h / g)
 
-# Calcular la distancia horizontal recorrida durante la caída
+# Calcular la distancia horizontal recorrida durante la caída sin resistencia del aire
 d_caida = v_avion * t_caida
 
-# Calcular el tiempo total de vuelo
+# Calcular el tiempo total de vuelo sin resistencia del aire
 t_total = d / v_avion
 
 # Calcular la posición inicial del objeto
@@ -28,11 +29,22 @@ vx0 = v_avion
 vy0 = 0
 vz0 = 0
 
-# Función para calcular la posición del objeto en el tiempo t
-def posicion(t):
-    x = x0 + vx0 * t
-    y = y0 + vy0 * t
-    z = z0 - 0.5 * g * t**2
+# Función para calcular la posición del objeto en el tiempo t con resistencia del aire
+def posicion(t, dt=0.01):
+    x, y, z = x0, y0, z0
+    vx, vy, vz = vx0, vy0, vz0
+    for _ in np.arange(0, t, dt):
+        ax = -k * vx
+        ay = -k * vy
+        az = -g - k * vz
+        vx += ax * dt
+        vy += ay * dt
+        vz += az * dt
+        x += vx * dt
+        y += vy * dt
+        z += vz * dt
+        if z <= 0:
+            break
     return x, y, z
 
 # Crear la figura y el eje 3D
@@ -44,7 +56,7 @@ ax.set_zlim(0, h)
 ax.set_xlabel("X")
 ax.set_ylabel("Y")
 ax.set_zlabel("Z")
-ax.set_title("Caída Parabólica desde un Avión")
+ax.set_title("Caída Parabólica desde un Avión con Resistencia del Aire")
 
 # Crear la línea de la trayectoria
 line, = ax.plot([], [], [], 'bo-', markersize=5, label='Objeto')
