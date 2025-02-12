@@ -13,8 +13,8 @@ r1 = np.array([-1.0, 0.0, 0.0])  # Posición inicial del cuerpo 1
 r2 = np.array([1.0, 0.0, 0.0])   # Posición inicial del cuerpo 2
 r3 = np.array([0.0, 1.0, 0.0])   # Posición inicial del cuerpo 3
 
-v1 = np.array([0.0, -0.5, 0.0])  # Velocidad inicial del cuerpo 1
-v2 = np.array([0.0, 0.5, 0.0])   # Velocidad inicial del cuerpo 2
+v1 = np.array([0.0, -0.5, 0.1])  # Velocidad inicial del cuerpo 1
+v2 = np.array([0.0, 0.5, -0.1])  # Velocidad inicial del cuerpo 2
 v3 = np.array([0.5, 0.0, 0.0])   # Velocidad inicial del cuerpo 3
 
 # Función para calcular las derivadas
