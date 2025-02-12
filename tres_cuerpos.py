@@ -63,6 +63,9 @@ trail2, = ax.plot([], [], [], 'g-', alpha=0.5)
 trail3, = ax.plot([], [], [], 'b-', alpha=0.5)
 ax.legend()
 
+# Añadir texto para mostrar la distancia entre los cuerpos
+text = ax.text2D(0.05, 0.95, "", transform=ax.transAxes)
+
 def update(frame):
     line1.set_data(x1[:frame], y1[:frame])
     line1.set_3d_properties(z1[:frame])
@@ -76,7 +79,16 @@ def update(frame):
     trail2.set_3d_properties(z2[:frame])
     trail3.set_data(x3[:frame], y3[:frame])
     trail3.set_3d_properties(z3[:frame])
-    return line1, line2, line3, trail1, trail2, trail3
+    
+    # Calcular las distancias entre los cuerpos
+    d12 = np.linalg.norm([x1[frame] - x2[frame], y1[frame] - y2[frame], z1[frame] - z2[frame]])
+    d13 = np.linalg.norm([x1[frame] - x3[frame], y1[frame] - y3[frame], z1[frame] - z3[frame]])
+    d23 = np.linalg.norm([x2[frame] - x3[frame], y2[frame] - y3[frame], z2[frame] - z3[frame]])
+    
+    # Actualizar el texto con las distancias
+    text.set_text(f'Distancias:\nCuerpo 1-2: {d12:.2f}\nCuerpo 1-3: {d13:.2f}\nCuerpo 2-3: {d23:.2f}')
+    
+    return line1, line2, line3, trail1, trail2, trail3, text
 
 ani = FuncAnimation(fig, update, frames=len(t_eval), interval=20, blit=True)
 plt.show()
