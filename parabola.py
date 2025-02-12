@@ -45,7 +45,7 @@ def posicion(t, dt=0.01):
         z += vz * dt
         if z <= 0:
             break
-    return x, y, z
+    return x, y, z, vx, vy, vz
 
 # Crear la figura y el eje 3D
 fig = plt.figure()
@@ -62,13 +62,27 @@ ax.set_title("Caída Parabólica desde un Avión con Resistencia del Aire")
 line, = ax.plot([], [], [], 'bo-', markersize=5, label='Objeto')
 ax.legend()
 
+# Añadir texto para mostrar las fórmulas
+text = ax.text2D(0.05, 0.95, "", transform=ax.transAxes)
+
 # Función de actualización para la animación
 def update(frame):
     t = frame * t_total / 100
-    x, y, z = posicion(t)
+    x, y, z, vx, vy, vz = posicion(t)
     line.set_data([x0, x], [y0, y])
     line.set_3d_properties([z0, z])
-    return line,
+    
+    # Actualizar el texto con las fórmulas
+    formula_text = (f"t = {t:.2f} s\n"
+                    f"x = {x:.2f} m\n"
+                    f"y = {y:.2f} m\n"
+                    f"z = {z:.2f} m\n"
+                    f"vx = {vx:.2f} m/s\n"
+                    f"vy = {vy:.2f} m/s\n"
+                    f"vz = {vz:.2f} m/s")
+    text.set_text(formula_text)
+    
+    return line, text
 
 # Crear la animación
 ani = FuncAnimation(fig, update, frames=100, interval=100, blit=True)
