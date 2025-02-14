@@ -23,9 +23,17 @@ document.addEventListener("DOMContentLoaded", () => {
         // Mostrar el resultado en la consola
         console.log(`num1: ${num1}, result: ${result}, num2: ${num2}`);
         // Mostrar el resultado en el elemento de resultado
-        alert(`La suma de ${num1} + ${num2} es: ${result}`);
-        Swal.fire("La suma de ${num1} + ${num2} es: ${result}");
+       // alert(`La suma de ${num1} + ${num2} es: ${result}`);
+        //Swal.fire(`La suma de ${num1} + ${num2} es: ${result}`);
+        Swal.fire({
+            title: "suma ",
+            text:  `La suma de ${num1} + ${num2} es: ${result}`,
+            icon: "warning",
+            timer:3000,
+            showConfirmButton: false
+          });
     };
+    
 
     // Añadir el evento de envío al formulario
     formulario.addEventListener("submit", eventoFormulario);
