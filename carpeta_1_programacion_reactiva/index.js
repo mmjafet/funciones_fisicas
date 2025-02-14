@@ -1,12 +1,18 @@
-const mensaje = document.getElementById('mensaje');
-const boton = document.getElementById('btn-saludo');
+const formulario = document.getElementById('calculadora')
 
+const eventoFormulario = (evt)=>{
+    evt.preventDefault()}
 
+formulario.addEventListener('submit', eventoFormulario)
 
-const eventoSaludar = () => {
-    let texto = "hola desde js con este Dom <a> manipulado </a>";
+const calcular = ()=>{
+    let num1 = document.getElementById('num1').value
+    let num2 = document.getElementById('num2').value
+    console.log(num1)
+    console.log(num2)
+
+    suma = parseFloat(num1) + parseFloat(num2)
+
+    alert(`La suma de los numeros es: ${suma}`)
     
-    mensaje.innerText += texto;
-    }
-
-boton.addEventListener('click', eventoSaludar);
+}
