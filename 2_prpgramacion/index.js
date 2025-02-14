@@ -8,6 +8,8 @@ formulario.addEventListener('submit', eventoFormulario)
 const calcular = ()=>{
     let num1 = document.getElementById('num1').value
     let num2 = document.getElementById('num2').value
+    console.log(num1)
+    console.log(num2)
 
     suma = parseFloat(num1) + parseFloat(num2)
 
