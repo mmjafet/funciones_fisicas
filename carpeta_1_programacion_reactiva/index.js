@@ -1,18 +1,22 @@
-const formulario = document.getElementById('calculadora')
+const formulario = document.getElementById("calculadora");
+const txtResult = document.getElementById("result")
 
-const eventoFormulario = (evt)=>{
-    evt.preventDefault()}
+const eventoFormulario = evt =>{
+    evt.preventDefault();
+    //TODO: Añadir un evento general al DOM para que se pueda cargar aunque la linea este al inicio del HTML
+    // Sumar los nùmeros
+    //Agregar evento para cuando este completo el DOM
+    //Mostrar el resultado de la suma
+   
+    const data = new FormData(evt.target);
+    //const dataObject = Object.fromEntries(data.entries());
+    const num1 = data.get("numero1");
+    const num2 = data.get("numero2");
 
-formulario.addEventListener('submit', eventoFormulario)
-
-const calcular = ()=>{
-    let num1 = document.getElementById('num1').value
-    let num2 = document.getElementById('num2').value
-    console.log(num1)
-    console.log(num2)
-
-    suma = parseFloat(num1) + parseFloat(num2)
-
-    alert(`La suma de los numeros es: ${suma}`)
-    
+    const result = +num1 + +num2;
+    console.log(`num1: ${num1}, result: ${result}, num2: ${num2}`);
+    txtResult.innerText = result;
 }
+
+
+formulario.addEventListener("submit", eventoFormulario);
