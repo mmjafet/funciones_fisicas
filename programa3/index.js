@@ -16,6 +16,8 @@ document.addEventListener('DOMContentLoader', () => {
         }
 
     data.push(newTask);
+    let data2 = [];
+    data2 = [...data2,newTask];
   });
 
   
