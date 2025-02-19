@@ -3,14 +3,48 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title> to-do List</title>
-    <script src="index.js"></script>
+    <title>To-do List</title>
+    <script src="index.js" defer></script>
     <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
 </head>
 <body>
-<h1 id="titulo" name="titulo">To-do List</h1> 
+    <h1 class="titulo">To-do List</h1> 
 
+    <div class="form-container">
+        <form class="form">
+            <h2>Tarea</h2>
+            <input type="text" id="tarea" name="tarea" placeholder="Escribe una tarea">
+            <input type="text" id="descripcion" name="descripcion" placeholder="Escribe una descripción">
+            <button type="submit" id="Agregar">Agregar</button>
+        </form>
+    </div>
 
-    
+    <h2 class="tareas-titulo">Tareas</h2>
+    <div id="task-list" class="task-list">
+        <!-- Ejemplo de tareas predefinidas -->
+        <div class="task">
+            <div class="task-description">
+                <strong>Estudiar JavaScript</strong><br>
+                Repasar conceptos de funciones y eventos.
+            </div>
+            <div>
+                <button class="icon-button"><i class="fas fa-check"></i></button>
+                <button class="icon-button delete"><i class="fas fa-trash"></i></button>
+            </div>
+        </div>
+
+        <div class="task">
+            <div class="task-description">
+                <strong>Hacer ejercicio</strong><br>
+                Correr 30 minutos en el parque.
+            </div>
+            <div>
+                <button class="icon-button"><i class="fas fa-check"></i></button>
+                <button class="icon-button delete"><i class="fas fa-trash"></i></button>
+            </div>
+        </div>
+    </div>
+
 </body>
-</html> 
+</html>
