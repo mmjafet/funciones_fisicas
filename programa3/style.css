@@ -1,38 +1,58 @@
 body {
     font-family: Arial, sans-serif;
-    margin: 0;
-    padding: 20px;
-    display: flex;
-    flex-direction: column; 
-}
-
-h1, h2 {
+    background-color: #f4f4f4;
     text-align: center;
 }
 
-.form-table, .task-table {
-    width: 100%;
-    margin: 20px 0;
-    border-collapse: collapse;
+.container {
+    width: 50%;
+    margin: auto;
+    background: white;
+    padding: 20px;
+    box-shadow: 0px 0px 10px gray;
+    border-radius: 10px;
 }
 
-.form-table td, .task-table td {
-    padding: 10px;
-    border: 1px solid #ddd;
+.task-form {
+    margin-bottom: 20px;
 }
 
-.small-button {
+.task-form label {
     display: block;
-    margin: 5px 0;
-    padding: 5px 10px;
-    font-size: 12px;
+    font-weight: bold;
+    margin-top: 10px;
 }
 
-.icon-button {
-    background: none;
-    border: none;
-    cursor: pointer;
+.task-form input {
+    width: 80%;
+    padding: 8px;
+    margin: 5px 0;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+}
 
-    font-size: 20px;
-    margin: 0 5px;
+button {
+    background-color: #007bff;
+    color: white;
+    border: none;
+    padding: 10px;
+    margin-top: 10px;
+    cursor: pointer;
+    border-radius: 5px;
+}
+
+button:hover {
+    background-color: #0056b3;
+}
+
+ul {
+    list-style: none;
+    padding: 0;
+}
+
+ul li {
+    background: #e0e0e0;
+    margin: 5px;
+    padding: 10px;
+    border-radius: 5px;
 }
