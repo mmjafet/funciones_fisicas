@@ -5,21 +5,29 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Lista de Tareas</title>
     <link rel="stylesheet" href="styles.css">
+    <style>
+        #taskList {
+            text-align: right;
+            list-style: none;
+            padding: 0;
+        }
+    </style>
 </head>
 <body>
     <div class="container">
         <h1>Lista de tareas</h1>
-        <div class="task-form">
+        <div class="task-form" id="Form">
             <label for="task">Tarea</label>
-            <input type="text" id="task" placeholder="Ej. Pasear al perro">
+            <input type="text" id="tarea" placeholder="Ej. Pasear al perro"
+            required>
             
             <label for="description">Descripción</label>
-            <input type="text" id="description" placeholder="Ej. Salir a las 4">
+            <input type="text" id="descripcion" placeholder="Ej. Salir a las 4">
             
-            <button id="addTask">+ Agregar</button>
+            <button id="agregar">+ Agregar</button>
         </div>
         
-        <h2>No hay tareas disponibles</h2>
+        <h2>Tareas</h2>
         <ul id="taskList">
             <!-- Aquí se agregarán las tareas dinámicamente -->
         </ul>
